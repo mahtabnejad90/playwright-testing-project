@@ -16,6 +16,6 @@ JS/TS based Playwright framework
 
 ## Best practices
 
- - Use .ts (typescript)
+ - Use .ts (typescript) file extensions
 
 

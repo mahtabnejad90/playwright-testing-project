@@ -4,3 +4,4 @@ node_modules/
 /playwright/.cache/
 local.env
 .pytest_cache
+.DS_Store

@@ -64,3 +64,20 @@ test("Working with inputs", async({ page }) => {
     await expect(loginErrorMessage).toContainText("Login and/or password are wrong.")
 
 })
+
+test("Assertions", async({ page }) => {
+
+    //navigates to website
+    await page.goto("https://example.com")
+    await expect(page).toHaveURL("https://example.com")
+    await expect(page).toHaveTitle("Example Domain")
+    const elementHOne = await page.locator("h1")
+    await expect(elementHOne).toBeVisible()
+    await expect(elementHOne).toHaveText("Example Domain")
+    await expect(elementHOne).toHaveCount(1)
+
+    const elementNonExisting = await page.locator("h5")
+    await expect(elementNonExisting).not.toBeVisible()
+
+
+})

@@ -89,7 +89,7 @@ test.describe("Selectors and assertions", () => {
         await expect(elementNonExisting).not.toBeVisible()
     })
 
-test.describe("Hooks & Screenshots", () => {
+test.describe.("Hooks & Screenshots", () => {
 
     test.beforeEach(async({ page }) => {
         await page.goto("http://example.com")

@@ -12,7 +12,9 @@ JS/TS based Playwright framework
 - `npx playwright test -headed` - runs tests in browser headed mode (visual test run)
 - `npx playwright test --project=chromium` - runs tests in a specific browser
 - `npx playwright test --project=all` - runs tests in a all browsers
-- `npx test path-to-test/test-file.spec.ts ` - 
+- `npx test path-to-test/test-file.spec.ts ` - tests a specific test file
+- `npx playwright test --grep @myTag` - use grep to tag tests tag needs to be added in test description section: ie `test("description of test @myTag")`
+- `npx playwright test --grep=invert @myTag` - runs all text except for the specified tests specified in @myTag tag
 
 ## Best practices
 

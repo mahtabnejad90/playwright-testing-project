@@ -73,7 +73,8 @@ test.describe("Selectors and assertions", () => {
     })
     
     //.only executes only annotated test
-    test("Assertions", async({ page }) => {
+    // @tagName adds tag to test
+    test("Assertions @mahtab", async({ page }) => {
     
         //navigates to website
         await page.goto("https://example.com")

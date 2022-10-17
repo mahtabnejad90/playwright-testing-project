@@ -89,7 +89,7 @@ test.describe("Selectors and assertions", () => {
         await expect(elementNonExisting).not.toBeVisible()
     })
 
-test.describe.("Hooks & Screenshots", () => {
+test.describe("Hooks & Screenshots", () => {
 
     test.beforeEach(async({ page }) => {
         await page.goto("http://example.com")
@@ -105,7 +105,21 @@ test.describe.("Hooks & Screenshots", () => {
     
             //take screenshot of full page
             const singleElement = await page.$('h1')
-            await singleElement.screenshot({ path: "single_element_screenshot.png" })
+            await singleElement!.screenshot({ path: "single_element_screenshot.png" })
 })
 
+})
+
+
+test.describe.only ("env variables" , () => {
+
+    test.beforeEach(async({ page }) => {
+        await page.goto(process.env.BASE_URL!)
+    })
+
+    test("Working with inputs", async({ page }) => {
+
+        await expect(page).toHaveTitle("Example Domain")
+
+    })
 })

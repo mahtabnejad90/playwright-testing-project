@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { loadPage, assertTitle } from '../helpers';
 
 
 test.describe('Basic test', () => {
@@ -111,7 +112,7 @@ test.describe("Hooks & Screenshots", () => {
 })
 
 
-test.describe.only ("env variables" , () => {
+test.describe ("env variables" , () => {
 
     test.beforeEach(async({ page }) => {
         await page.goto(process.env.BASE_URL!)
@@ -122,4 +123,9 @@ test.describe.only ("env variables" , () => {
         await expect(page).toHaveTitle("Example Domain")
 
     })
+})
+
+test.only ("Customer helpers" , async({ page }) => {
+    await loadPage(page)
+    await assertTitle(page)
 })

@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-test.describe('Login / Logout ', () => {
+test.describe.parallel('Login / Logout ', () => {
 
 test.beforeEach(async ({page}) => {
     await page.goto('http://zero.webappsecurity.com/');

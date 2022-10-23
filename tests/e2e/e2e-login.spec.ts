@@ -21,9 +21,11 @@ test ('Login Positive', async ({page}) => {
     await page.type('#user_login', 'username')
     await page.type('#user_password', 'password')
     await page.click("text=Sign in")
+    await page.goto('http://zero.webappsecurity.com/bank/account-summary.html')
     const account_summary_tab = await page.locator('#account_summary_tab')
     await expect(account_summary_tab).toContainText('Account Summary')  
     await page.goto('http://zero.webappsecurity.com/logout.html')
+
 })
 
 

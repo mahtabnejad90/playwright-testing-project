@@ -21,6 +21,10 @@ const config: PlaywrightTestConfig = {
         ignoreHTTPSErrors: true,
         video: "off",
         screenshot: "off",
+        launchOptions: {
+            // Put your chromium-specific args here
+            args: ['--disable-web-security'],
+        }
     },
     projects: [
         {

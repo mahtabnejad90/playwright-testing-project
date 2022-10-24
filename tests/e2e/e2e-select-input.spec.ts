@@ -13,7 +13,7 @@ test.describe.parallel('Transfer Funds ', () => {
         await expect(account_summary_tab).toContainText('Account Summary')  
     })
 
-    test.only ('Transfer Funds', async ({page}) => {
+    test ('Transfer Funds', async ({page}) => {
         await page.click('#transfer_funds_tab')
         const transferFundsTitle = await page.locator('.board-header')
         await expect(transferFundsTitle).toContainText('Transfer Money & Make Payments')

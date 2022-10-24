@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect} from '@playwright/test'
 
 test.describe.parallel('Login / Logout ', () => {
 
@@ -27,7 +27,4 @@ test ('Login Positive', async ({page}) => {
     await page.goto('http://zero.webappsecurity.com/logout.html')
 
 })
-
-
-
- })
+})

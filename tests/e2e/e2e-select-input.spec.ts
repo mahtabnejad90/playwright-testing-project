@@ -34,3 +34,28 @@ test.describe.parallel('Transfer Funds ', () => {
     })
 
 })
+
+test.describe.parallel('Filter Transactions ', () => {
+
+    test.beforeEach(async ({page}) => {
+        await page.goto('http://zero.webappsecurity.com/')
+        await page.click('#signin_button');
+        await page.type('#user_login', 'username')
+        await page.type('#user_password', 'password')
+        await page.click("text=Sign in")
+        await page.goto('http://zero.webappsecurity.com/bank/account-summary.html')
+    })
+
+    test ('Filter Transactions', async ({page}) => {
+        const account_summary_tab = await page.locator('#account_activity_tab')
+        await expect(account_summary_tab).toContainText('Account Activity')  
+        const showTransactionsTitle = await page.locator('.board-header')
+        await expect(showTransactionsTitle).toContainText('Show Transactions')
+        const helpBlockText = await page.locator('.help-block')
+        await expect(helpBlockText).toContainText('Choose an account to view.')
+        await page.selectOption('#aa_accountId', '2')
+        //add count assertion here tbc
+
+    })
+
+})

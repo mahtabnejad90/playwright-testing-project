@@ -125,7 +125,7 @@ test.describe ("env variables" , () => {
     })
 })
 
-test.only ("Customer helpers" , async({ page }) => {
+test("Customer helpers" , async({ page }) => {
     await loadPage(page)
     // await page.pause() > adds a pause to the test for debugging
     await assertTitle(page)

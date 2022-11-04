@@ -17,11 +17,17 @@ export class LoginPage {
         this.errorMessage = page.locator('.alert-error')
     }
 
-
-    // define login page methods
-
     async visitLoginPage() {
         await this.page.goto('http://zero.webappsecurity.com/');
     }
 
+    async login(username: string, password: string) {
+        await this.usernameInput.type(username)
+        await this.passwordInput.type(password)
+        await this.submitButton.click()
+    }
+
+    async assertErrorMessage() {
+        await expect(this.errorMessage).toContainText('Login and/or password are wrong.')
+    }
 }

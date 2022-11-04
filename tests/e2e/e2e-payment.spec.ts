@@ -41,12 +41,6 @@ test.describe.parallel('New Payment ', () => {
     const alertSuccessMessage = await page.locator('#alert_container')
     await expect(alertSuccessMessage).toBeVisible()
     await expect(alertSuccessMessage).toContainText('Foreign currency cash was successfully purchased.')
-
-
-
-
-
-
    })
 
 })

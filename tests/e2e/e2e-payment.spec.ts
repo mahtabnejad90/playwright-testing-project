@@ -25,7 +25,7 @@ test.describe.parallel('New Payment ', () => {
         await expect(sucessMessage).toContainText('The payment was successfully submitted.')
     })
 
-   test.only('Foreign Currency', async ({page}) => {
+   test('Foreign Currency', async ({page}) => {
     await page.click('#pay_bills_tab')
     const foreignCurrencyTab = await page.locator('#tabs > ul > li:nth-child(3) > a')
     await foreignCurrencyTab.click()

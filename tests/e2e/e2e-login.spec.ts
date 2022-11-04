@@ -1,9 +1,15 @@
 import {test, expect} from '@playwright/test'
+import {LoginPage} from '../../page-objects/login-page'
+
 
 test.describe.parallel('Login / Logout ', () => {
+    var loginPage: LoginPage
+
+
 
 test.beforeEach(async ({page}) => {
-    await page.goto('http://zero.webappsecurity.com/');
+    loginPage = new LoginPage(page)
+    await loginPage.visitLoginPage()
   
 })
 
@@ -24,6 +30,4 @@ test ('Login Positive', async ({page}) => {
     await page.goto('http://zero.webappsecurity.com/bank/account-summary.html')
 
 })
-
-
 })

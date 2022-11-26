@@ -5,12 +5,14 @@ export class HomePage {
 readonly page: Page
 readonly signInButton: Locator
 readonly searchBar: Locator
+readonly feedbackButton: Locator
 
 
 constructor(page: Page) {
     this.page = page
     this.signInButton = page.locator('#signin_button')
     this.searchBar = page.locator('#searchTerm')
+    this.feedbackButton = page.locator('#feedback')
 }
 
 
@@ -26,6 +28,10 @@ async clickSignInButton() {
 async searchFor(phrase: string) {
     await this.searchBar.type(phrase)
     await this.page.keyboard.press('Enter')
+}
+
+async clickFeedbackButton() {
+    await this.feedbackButton.click()
 }
 
 

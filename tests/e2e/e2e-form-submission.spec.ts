@@ -1,38 +1,31 @@
 import {test, expect} from '@playwright/test'
+import {HomePage} from '../../page-objects/home-page'
+import {FeedbackPage} from '../../page-objects/feedback-page'
 
-test.describe.parallel('Test Feedback Form ', () => {
+
+test.describe.only('Test Feedback Form ', () => {
+
+    let homePage: HomePage
+    let feedbackPage: FeedbackPage
 
     test.beforeEach(async ({page}) => {
-        await page.goto('http://zero.webappsecurity.com/');
-        await page.click('#feedback');
+       homePage = new HomePage(page)
+       feedbackPage = new FeedbackPage(page)
+
+     await homePage.visitHomePage()
+     await homePage.clickFeedbackButton()
     })
 
     test ('Reset Feedback Form', async ({page}) => {
-        await page.type('#name', 'Mahtab Nejad')
-        await page.type('#email', 'mahtab@dummyemail.com')
-        await page.type('#subject', 'test subject')
-        await page.type('#comment', 'hello world, I am testing this. I love penguins and testing')
-        await page.click("input[name='clear']")
-        const nameInput = await page.locator('#name')
-        const emailInput = await page.locator('#email')
-        const subjectInput = await page.locator('#subject')
-        const commentInput = await page.locator('#comment')
-
-        await expect(nameInput).toBeEmpty()
-        await expect(emailInput).toBeEmpty()
-        await expect(subjectInput).toBeEmpty()
-        await expect(commentInput).toBeEmpty()
+        await feedbackPage.fillForm('name', 'email@email.com', 'helloo', 'mahtab is my name')
+        await feedbackPage.resetForm()
+        await feedbackPage.assertReset()
     })
 
     test ('Submit Feedback Form', async ({page}) => {
-        await page.type('#name', 'Mahtab Nejad')
-        await page.type('#email', 'mahtab@dummyemail.com')
-        await page.type('#subject', 'test subject')
-        await page.type('#comment', 'hello world, I am testing this. I love penguins and testing')
-        await page.click("input[type='submit']")
-        await page.waitForURL('http://zero.webappsecurity.com/sendFeedback.html')
-        await page.waitForSelector('#feedback-title')
-
+        await feedbackPage.fillForm('name', 'email@email.com', 'helloo', 'mahtab is my name')
+        await feedbackPage.submitForm()
+        await feedbackPage.assertFeedbackTitle()
     })
 
 //end of describe    

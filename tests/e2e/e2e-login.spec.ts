@@ -3,22 +3,20 @@ import {LoginPage} from '../../page-objects/login-page'
 import {HomePage} from '../../page-objects/home-page'
 
 
-test.describe.parallel('Login / Logout ', () => {
+test.describe('Login / Logout ', () => {
     let loginPage: LoginPage
     let homePage: HomePage
-
 
 test.beforeEach(async ({page}) => {
     loginPage = new LoginPage(page)
     homePage = new HomePage(page)
-    await homePage.visitHomePage()
-
-  
+    await homePage.visitHomePage()  
 })
 
 test ('Login Negative', async ({page}) => {
     await homePage.clickSignInButton()
     await loginPage.login('invalid', 'invalid')
+    await loginPage.wait(3000)
     await loginPage.assertErrorMessage()
 })
 

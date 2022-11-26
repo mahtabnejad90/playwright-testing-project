@@ -1,16 +1,22 @@
 import {test, expect} from '@playwright/test'
 import { HomePage } from '../../page-objects/home-page'
 import { LoginPage } from '../../page-objects/login-page'
+import {Navbar} from '../../page-objects/components/navbar'
+import {TransferFunds} from '../../page-objects/transfer-funds'
 
-test.describe('Transfer funds and make payments ', () => {
+test.describe.only('Transfer funds and make payments ', () => {
 
     let homePage: HomePage
     let loginPage: LoginPage
+    let navbar: Navbar
+    let transferFunds: TransferFunds
 
     
     test.beforeEach(async ({page}) => {
         homePage = new HomePage(page)
         loginPage = new LoginPage(page)
+        navbar = new Navbar(page)
+        transferFunds = new TransferFunds(page)
 
         await homePage.visitHomePage()
         await homePage.clickSignInButton()
@@ -19,14 +25,7 @@ test.describe('Transfer funds and make payments ', () => {
     })
 
     test ('Transfer funds', async ({page}) => {
-        await page.click('#transfer_funds_tab')
-        await page.selectOption('#tf_fromAccountId', '2')
-        await page.selectOption('#tf_toAccountId', '3')
-        await page.type('#tf_amount', '500')
-        await page.type('#tf_description', 'test message')
-        await page.click('#btn_submit')
-        await expect(page).toHaveURL('http://zero.webappsecurity.com/bank/transfer-funds-verify.html')
-        await page.click('#btn_submit')
-        await expect(page).toHaveURL('http://zero.webappsecurity.com/bank/transfer-funds-confirm.html')
+        await navbar.clickOnTabs('Transfer Funds')
+        await transferFunds.transferFunds()
     })
 })

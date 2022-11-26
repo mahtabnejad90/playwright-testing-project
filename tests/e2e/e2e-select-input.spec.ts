@@ -46,10 +46,12 @@ test.describe.parallel('Filter Transactions ', () => {
         await page.goto('http://zero.webappsecurity.com/bank/account-summary.html')
     })
 
-    test ('Filter Transactions', async ({page}) => {
+    test('Filter Transactions', async ({page}) => {
         const account_summary_tab = await page.locator('#account_activity_tab')
-        await expect(account_summary_tab).toContainText('Account Activity')  
+        await expect(account_summary_tab).toContainText('Account Activity')
+        await page.click('#account_activity_tab')  
         const showTransactionsTitle = await page.locator('.board-header')
+        await page.pause()
         await expect(showTransactionsTitle).toContainText('Show Transactions')
         const helpBlockText = await page.locator('.help-block')
         await expect(helpBlockText).toContainText('Choose an account to view.')
